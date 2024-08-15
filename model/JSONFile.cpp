@@ -27,7 +27,6 @@ const std::string& JSONFile::getPath() const{
 };
 
 void JSONFile::setPath(const std::string& path){
-    std::cout << path << std::endl;
     if(path.empty()){
         throw std::runtime_error("Empty path given.");
     }

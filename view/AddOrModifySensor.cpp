@@ -218,7 +218,6 @@ void AddOrModifySensor::reset(){
 };
 
 void AddOrModifySensor::handleSelectedTypeOfSensor(int index){
-    std::cout << "in teoria dovrebbe passare" << std::endl;
     if(index==0){
         if(formLayout->rowCount()>5){
             formLayout->removeRow(5);
@@ -239,7 +238,7 @@ void AddOrModifySensor::handleSelectedTypeOfSensor(int index){
         unityOfMeasure = new QComboBox();
         unityOfMeasure->addItem("Pascal (pa)");
         unityOfMeasure->addItem("Atmosphere (atm)");
-        unityOfMeasure->addItem("bar");
+        unityOfMeasure->addItem("Bar (bar)");
         formLayout->addRow("Unity of measure",unityOfMeasure);
     } else if(index==3){
         if(formLayout->rowCount()>5){

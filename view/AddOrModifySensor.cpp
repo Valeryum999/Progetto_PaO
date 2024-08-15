@@ -4,6 +4,8 @@
 #include <iostream>
 #include "model/TemperatureSensor.h"
 #include "model/HumiditySensor.h"
+#include "model/PressureSensor.h"
+#include "model/RadiationSensor.h"
 #include <QMessageBox>
 
 AddOrModifySensor::AddOrModifySensor(QWidget* parent): QWidget(parent),isNewSensor(true) {
@@ -17,6 +19,8 @@ AddOrModifySensor::AddOrModifySensor(QWidget* parent): QWidget(parent),isNewSens
     type = new QComboBox();
     type->addItem("Humidity");
     type->addItem("Temperature");
+    type->addItem("Pressure");
+    type->addItem("Radiation");
     minValue = new QDoubleSpinBox();
     minValue->setRange(0,99);
     minValue->setSingleStep(1);
@@ -61,6 +65,8 @@ AddOrModifySensor::AddOrModifySensor(AbstractSensor* sensor, QWidget* parent): Q
     type = new QComboBox();
     type->addItem("Humidity");
     type->addItem("Temperature");
+    type->addItem("Pressure");
+    type->addItem("Radiation");
     minValue = new QDoubleSpinBox();
     minValue->setRange(0,99);
     minValue->setSingleStep(1);
@@ -108,6 +114,8 @@ AddOrModifySensor::AddOrModifySensor(const AddOrModifySensor& addOrModifySensor,
     type = new QComboBox();
     type->addItem("Humidity");
     type->addItem("Temperature");
+    type->addItem("Pressure");
+    type->addItem("Radiation");
     minValue = new QDoubleSpinBox();
     minValue->setRange(0,99);
     minValue->setValue(25);
@@ -195,9 +203,13 @@ void AddOrModifySensor::setType(const QString& type){
     int tempIndex = 0;
     if(type.compare("Temperature") == 0){
         tempIndex = 1;
+    } else if(type.compare("Pressure") == 0){
+        tempIndex = 2;
+    } else if(type.compare("Radiation") == 0){
+        tempIndex = 3;
     }
     this->type->setCurrentIndex(tempIndex);
-    emit this->type->activated(tempIndex);
+    handleSelectedTypeOfSensor(tempIndex);
 };
 
 void AddOrModifySensor::reset(){
@@ -206,6 +218,7 @@ void AddOrModifySensor::reset(){
 };
 
 void AddOrModifySensor::handleSelectedTypeOfSensor(int index){
+    std::cout << "in teoria dovrebbe passare" << std::endl;
     if(index==0){
         if(formLayout->rowCount()>5){
             formLayout->removeRow(5);
@@ -218,6 +231,23 @@ void AddOrModifySensor::handleSelectedTypeOfSensor(int index){
         unityOfMeasure->addItem("Celsius (°C)");
         unityOfMeasure->addItem("Fahrenheit (°F)");
         unityOfMeasure->addItem("Kelvin (°K)");
+        formLayout->addRow("Unity of measure",unityOfMeasure);
+    } else if(index==2){
+        if(formLayout->rowCount()>5){
+            formLayout->removeRow(5);
+        }
+        unityOfMeasure = new QComboBox();
+        unityOfMeasure->addItem("Pascal (pa)");
+        unityOfMeasure->addItem("Atmosphere (atm)");
+        unityOfMeasure->addItem("bar");
+        formLayout->addRow("Unity of measure",unityOfMeasure);
+    } else if(index==3){
+        if(formLayout->rowCount()>5){
+            formLayout->removeRow(5);
+        }
+        unityOfMeasure = new QComboBox();
+        unityOfMeasure->addItem("Gray (Gy)");
+        unityOfMeasure->addItem("Sievert (Sv)");
         formLayout->addRow("Unity of measure",unityOfMeasure);
     }
     
@@ -239,14 +269,27 @@ void AddOrModifySensor::handleCreatedSensor(){
                                     type->currentText(),
                                     minValue->value(),
                                     maxValue->value());
+    } else if(type->currentText().compare("Pressure") == 0){
+        sensor = new PressureSensor(name->text(),
+                                       description->text(),
+                                       type->currentText(),
+                                       minValue->value(),
+                                       maxValue->value(),
+                                       unityOfMeasure->currentText());
+    } else if(type->currentText().compare("Radiation") == 0){
+        sensor = new RadiationSensor(name->text(),
+                                       description->text(),
+                                       type->currentText(),
+                                       minValue->value(),
+                                       maxValue->value(),
+                                       unityOfMeasure->currentText());
     }
-   
     handleEvents();
     emit createdSensor(sensor);
 };
 
 void AddOrModifySensor::controlInputs(){
-    if(name->text().compare("")==0){
+    if(name->text().isEmpty()){
         QMessageBox::warning(this,
                     "Alert",
                     "You can't create a sensor without a name.",
@@ -280,10 +323,23 @@ void AddOrModifySensor::handleModifiedSensor(){
                                     type->currentText(),
                                     minValue->value(),
                                     maxValue->value());
+    } else if(type->currentText().compare("Pressure") == 0){
+        sensor = new PressureSensor(sensor->getUUID(),
+                                       name->text(),
+                                       description->text(),
+                                       type->currentText(),
+                                       minValue->value(),
+                                       maxValue->value(),
+                                       unityOfMeasure->currentText());
+    } else if(type->currentText().compare("Radiation") == 0){
+        sensor = new RadiationSensor(sensor->getUUID(),
+                                       name->text(),
+                                       description->text(),
+                                       type->currentText(),
+                                       minValue->value(),
+                                       maxValue->value(),
+                                       unityOfMeasure->currentText());
     }
-    //if(type->currentText().compare("Temperature")==0){
-    //
-    //}
    
     emit modifiedSensor(sensor);
 };

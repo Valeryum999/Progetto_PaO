@@ -10,6 +10,9 @@ JSONFile::JSONFile(): path(),document(),hasUnsavedChanges(false){
 };
 
 JSONFile::JSONFile(const std::string& absolute_path): path(absolute_path),hasUnsavedChanges(false){
+    if(path.empty()){
+        throw std::runtime_error("Empty path given.");
+    }
     QFile temp;
     temp.setFileName(QString::fromStdString(path));
     if(!temp.open(QIODevice::ReadOnly)){
@@ -24,7 +27,18 @@ const std::string& JSONFile::getPath() const{
 };
 
 void JSONFile::setPath(const std::string& path){
+    std::cout << path << std::endl;
+    if(path.empty()){
+        throw std::runtime_error("Empty path given.");
+    }
     this->path = path;
+    QFile temp;
+    temp.setFileName(QString::fromStdString(path));
+    if(!temp.open(QIODevice::ReadOnly)){
+        throw std::runtime_error("Couldn't open file.");
+    }
+    document = QJsonDocument::fromJson(temp.readAll());
+    temp.close();
 };
 
 bool JSONFile::hasNotBeenSaved() const{

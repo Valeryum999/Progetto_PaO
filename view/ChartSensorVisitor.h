@@ -11,6 +11,8 @@ class ChartSensorVisitor : public Visitor{
         ChartSensorVisitor(MainContentSensor* sensor);
         void visit(TemperatureSensor& sensor) override;
         void visit(HumiditySensor& sensor) override;
+        void visit(PressureSensor& sensor) override;
+        void visit(RadiationSensor& sensor) override;
 };
 
 #endif

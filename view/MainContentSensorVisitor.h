@@ -2,8 +2,6 @@
 #define VIEW_MAIN_CONTENT_SENSOR_VISITOR_H
 
 #include "view/Visitor.h"
-#include "model/HumiditySensor.h"
-#include "model/TemperatureSensor.h"
 #include "view/MainContentSensor.h"
 
 class MainContentSensorVisitor: public Visitor{
@@ -13,6 +11,8 @@ class MainContentSensorVisitor: public Visitor{
         MainContentSensorVisitor(MainContentSensor*);
         virtual void visit(HumiditySensor& sensor) override;
         virtual void visit(TemperatureSensor& sensor) override;
+        virtual void visit(PressureSensor& sensor) override;
+        virtual void visit(RadiationSensor& sensor) override;
 };
 
 #endif

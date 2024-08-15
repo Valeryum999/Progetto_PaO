@@ -3,8 +3,6 @@
 
 #include "view/Visitor.h"
 #include "view/AddOrModifySensor.h"
-#include "model/TemperatureSensor.h"
-#include "model/HumiditySensor.h"
 
 class AddOrModifySensorVisitor : public Visitor{
     private:
@@ -13,6 +11,8 @@ class AddOrModifySensorVisitor : public Visitor{
         AddOrModifySensorVisitor(AddOrModifySensor* sensor);
         virtual void visit(HumiditySensor&) override;
         virtual void visit(TemperatureSensor&) override;
+        virtual void visit(PressureSensor&) override;
+        virtual void visit(RadiationSensor&) override;
 };
 
 #endif

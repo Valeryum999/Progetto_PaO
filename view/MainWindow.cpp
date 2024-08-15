@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
     QMenu* view = menuBar()->addMenu("&View");
     view->addAction(show_shortcuts);
 
-    AbstractSensor *obj = new TemperatureSensor(QString::fromStdString("ciao1"),QString::fromStdString("ciao"),QString::fromStdString("Temperature"));
+    //AbstractSensor *obj = new TemperatureSensor(QString::fromStdString("ciao1"),QString::fromStdString("ciao"),QString::fromStdString("Temperature"));
 
     centralWidget = new QWidget(this);
 
@@ -98,11 +98,9 @@ MainWindow::MainWindow(QWidget *parent)
     
     centralWidget->setLayout(centralWidgetLayout);
 
-    currentFile = new JSONFile("/home/valeryum/Desktop/hello-world/test.json");
-    std::vector<AbstractSensor*> sensors = currentFile->load();
-    sidebar->setSensorPanel(sensors);
+    currentFile = new JSONFile();
 
-    addOrModifySensor = new AddOrModifySensor(obj);
+    addOrModifySensor = new AddOrModifySensor();
     //currentFile->save();
     //for(AbstractSensor* it: sensors){
     //   
@@ -157,7 +155,7 @@ void MainWindow::newFile(){
     if (path.isEmpty()) {
         return;
     }
-    currentFile = new JSONFile(path.toStdString());
+    currentFile->setPath(path.toStdString());
 };
 
 void MainWindow::openFile(){
@@ -170,21 +168,17 @@ void MainWindow::openFile(){
     if (path.isEmpty()) {
         return;
     }
-    currentFile = new JSONFile(path.toStdString());
-   
+    std::cout << "Ziomela" << std::endl;
+    //std::cout << path.toStdString() << std::endl;
     currentFile->setPath(path.toStdString());
+    std::cout << "Ziopera" << std::endl;
     std::vector<AbstractSensor*> sensors = currentFile->load();
     sidebar->setSensorPanel(sensors);
-    //std::vector<WidgetSensor*> tempSensors;
-    //for(auto it:sensors){
-    //    tempSensors.push_back(new WidgetSensor(it,nullptr));
-    //}
-    //sidebar->setSensorPanel(tempSensors);
     sidebar->debug();
 };
 
 void MainWindow::save(){
-    if(currentFile->getPath().compare("") == 0){
+    if(currentFile->getPath().empty()){
         save_as();
     } else {
         currentFile->save();

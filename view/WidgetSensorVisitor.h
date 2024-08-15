@@ -5,6 +5,8 @@
 #include <QWidget>
 #include "model/HumiditySensor.h"
 #include "model/TemperatureSensor.h"
+#include "model/PressureSensor.h"
+#include "model/RadiationSensor.h"
 #include "view/WidgetSensor.h"
 
 class WidgetSensorVisitor: public Visitor{
@@ -14,6 +16,8 @@ class WidgetSensorVisitor: public Visitor{
         WidgetSensorVisitor(WidgetSensor*);
         virtual void visit(HumiditySensor& sensor) override;
         virtual void visit(TemperatureSensor& sensor) override;
+        virtual void visit(PressureSensor& sensor) override;
+        virtual void visit(RadiationSensor& sensor) override;
 };
 
 #endif

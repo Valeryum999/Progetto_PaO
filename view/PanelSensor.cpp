@@ -134,7 +134,6 @@ void PanelSensor::handleModifyButton(AbstractSensor* sensor){
 void PanelSensor::handleDeleteButton(AbstractSensor* sensor){
     for(std::vector<WidgetSensor*>::iterator it = sensors.begin(); it != sensors.end(); it++){
         if(*(*it)->getAbstractSensor()==*sensor){
-            std::cout << "ziomela" << std::endl;
             disconnect(*it, &WidgetSensor::selected, this, &PanelSensor::handleSensorWidgetSelected);
             disconnect(*it, &WidgetSensor::modify, this, &PanelSensor::handleModifyButton);
             disconnect(*it, &WidgetSensor::deleted, this, &PanelSensor::handleDeleteButton);
@@ -145,11 +144,5 @@ void PanelSensor::handleDeleteButton(AbstractSensor* sensor){
             break;
         }
     }
-    //for(std::vector<WidgetSensor*>::iterator it = sensors.begin(); it != sensors.end(); it++){
-    //   
-    //    sensorsLayout->addWidget(*it);
-    //}
-    //sensorsLayout->insertStretch(-1,1);
-    //delete sensor;
     emit sensorDeleted(sensor);
 };

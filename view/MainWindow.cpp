@@ -238,6 +238,9 @@ void MainWindow::handleModifiedSensor(AbstractSensor* sensor){
 
 void MainWindow::sensorDeletedHandler(AbstractSensor* sensor){ 
     currentFile->remove(*sensor);
+    if(sensorMainContent->getAbstractSensor() == nullptr){
+        return;
+    }
     if(*sensor==*sensorMainContent->getAbstractSensor()){
         freeMainWidget();
         centralWidgetLayout->addWidget(onboardPanel);

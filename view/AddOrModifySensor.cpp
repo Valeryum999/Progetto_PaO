@@ -253,7 +253,20 @@ void AddOrModifySensor::handleSelectedTypeOfSensor(int index){
 };
 
 void AddOrModifySensor::handleCreatedSensor(){
-    controlInputs();
+    if(name->text().isEmpty()){
+        QMessageBox::warning(this,
+                    "Alert",
+                    "You can't create a sensor without a name.",
+                    QMessageBox::Ok);
+        return;
+    }
+    if(minValue->value() > maxValue->value()){
+        QMessageBox::warning(this,
+                    "Alert",
+                    "You can't create a sensor having a minimum value\ngreater than the maximum value.",
+                    QMessageBox::Ok);
+        return;
+    }
     AbstractSensor* sensor = new HumiditySensor(QString::fromStdString("null"),QString::fromStdString("null"),QString::fromStdString("null")); //per non avere l'errore
     if(type->currentText().compare("Temperature") == 0){
         sensor = new TemperatureSensor(name->text(),
@@ -287,7 +300,7 @@ void AddOrModifySensor::handleCreatedSensor(){
     emit createdSensor(sensor);
 };
 
-void AddOrModifySensor::controlInputs(){
+void AddOrModifySensor::handleModifiedSensor(){
     if(name->text().isEmpty()){
         QMessageBox::warning(this,
                     "Alert",
@@ -302,10 +315,6 @@ void AddOrModifySensor::controlInputs(){
                     QMessageBox::Ok);
         return;
     }
-};
-
-void AddOrModifySensor::handleModifiedSensor(){
-    controlInputs();
 
     if(type->currentText().compare("Temperature") == 0){
         sensor = new TemperatureSensor(sensor->getUUID(),

@@ -168,7 +168,7 @@ void MainWindow::openFile(){
     if (path.isEmpty()) {
         return;
     }
-    std::cout << "Ziopera" << std::endl;
+    currentFile->setPath(path.toStdString());
     std::vector<AbstractSensor*> sensors = currentFile->load();
     sidebar->setSensorPanel(sensors);
     sidebar->debug();

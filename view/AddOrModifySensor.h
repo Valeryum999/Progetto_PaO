@@ -42,7 +42,6 @@ class AddOrModifySensor : public QWidget{
         AddOrModifySensor(AbstractSensor* sensor,QWidget* parent=nullptr);
         AddOrModifySensor(const AddOrModifySensor& addOrModifySensor,QWidget* parent=nullptr);
         AbstractSensor* getAbstractSensor() const;
-        void controlInputs();
         bool getIsNewSensor() const;
         void setIsNewSensor(const bool& isNewSensor);
         void setAbstractSensor(AbstractSensor* sensor);

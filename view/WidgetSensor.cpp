@@ -224,7 +224,6 @@ void WidgetSensor::handleModifyButton(){
 }
 
 void WidgetSensor::handleDeleteButton(){
-   
     emit deleted(this->getAbstractSensor());
 };
 

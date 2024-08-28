@@ -1,0 +1,38 @@
+[
+    {
+        "description": "letsgoski",
+        "max_value": 75,
+        "min_value": 50,
+        "name": "TemperatureSensor1",
+        "type": "Temperature",
+        "unity_of_measure": "Celsius (°C)",
+        "uuid": "f47bc500-f753-4dda-be61-e02026a03151"
+    },
+    {
+        "description": "adf",
+        "max_value": 20,
+        "min_value": 10,
+        "name": "HumiditySensor1",
+        "percentage": 0,
+        "type": "Humidity",
+        "uuid": "8f6d1961-7ceb-4689-9abd-cdffa99f7b2e"
+    },
+    {
+        "description": "descrizione",
+        "max_value": 75,
+        "min_value": 25,
+        "name": "PressureSensor1",
+        "type": "Pressure",
+        "unity_of_measure": "Pascal (pa)",
+        "uuid": "5c6c8252-9572-40e3-a0f0-67cbbafae616"
+    },
+    {
+        "description": "adfadf",
+        "max_value": 75,
+        "min_value": 25,
+        "name": "RadiationSensor1",
+        "type": "Radiation",
+        "unity_of_measure": "Gray (Gy)",
+        "uuid": "231aa820-4e59-43dd-888f-1d15913fde02"
+    }
+]

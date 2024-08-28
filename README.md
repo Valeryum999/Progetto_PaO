@@ -9,5 +9,5 @@ qmake
 make
 ```
 ```bash
-./hello-world
+./NuclearSensors
 ```

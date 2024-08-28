@@ -271,30 +271,26 @@ void AddOrModifySensor::handleCreatedSensor(){
     if(type->currentText().compare("Temperature") == 0){
         sensor = new TemperatureSensor(name->text(),
                                        description->text(),
-                                       type->currentText(),
                                        minValue->value(),
                                        maxValue->value(),
                                        unityOfMeasure->currentText());
     } else if (type->currentText().compare("Humidity") == 0){
         sensor = new HumiditySensor(name->text(),
                                     description->text(),
-                                    type->currentText(),
                                     minValue->value(),
                                     maxValue->value());
     } else if(type->currentText().compare("Pressure") == 0){
         sensor = new PressureSensor(name->text(),
-                                       description->text(),
-                                       type->currentText(),
-                                       minValue->value(),
-                                       maxValue->value(),
-                                       unityOfMeasure->currentText());
+                                    description->text(),
+                                    minValue->value(),
+                                    maxValue->value(),
+                                    unityOfMeasure->currentText());
     } else if(type->currentText().compare("Radiation") == 0){
         sensor = new RadiationSensor(name->text(),
-                                       description->text(),
-                                       type->currentText(),
-                                       minValue->value(),
-                                       maxValue->value(),
-                                       unityOfMeasure->currentText());
+                                     description->text(),
+                                     minValue->value(),
+                                     maxValue->value(),
+                                     unityOfMeasure->currentText());
     }
     handleEvents();
     emit createdSensor(sensor);

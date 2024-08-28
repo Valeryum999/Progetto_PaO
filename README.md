@@ -5,9 +5,14 @@ This is a didactic project, it is not intended for production.
 
 ## Instructions
 ```bash
-qmake
-make
+qmake -project
+```
+Add this line to Progetto_PaO.pro
+```
+QT += core gui widgets charts
 ```
 ```bash
-./NuclearSensors
+qmake
+make
+./Progetto_PaO
 ```

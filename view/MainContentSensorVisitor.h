@@ -1,7 +1,7 @@
 #ifndef VIEW_MAIN_CONTENT_SENSOR_VISITOR_H
 #define VIEW_MAIN_CONTENT_SENSOR_VISITOR_H
 
-#include "view/Visitor.h"
+#include "model/Visitor.h"
 #include "view/MainContentSensor.h"
 
 class MainContentSensorVisitor: public Visitor{

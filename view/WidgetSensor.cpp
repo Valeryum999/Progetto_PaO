@@ -178,10 +178,6 @@ QString WidgetSensor::getId() const{
     return sensor->getUUID();
 };
 
-QString WidgetSensor::getType() const {
-    return sensor->getType();
-};
-
 void WidgetSensor::setType(const QString& type){
     this->type->setText(type);
 };

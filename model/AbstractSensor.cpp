@@ -2,21 +2,15 @@
 #include <QUuid>
 #include <iostream>
 
-AbstractSensor::AbstractSensor() : uuid(QUuid::createUuid().toString()),name(""), description("") {
-};
-
 AbstractSensor::~AbstractSensor() = default;
 
 AbstractSensor::AbstractSensor(QString name) : uuid(QUuid::createUuid().toString().remove("{").remove("}")),name(name), description("") {
 };
 
-AbstractSensor::AbstractSensor(QString name, QString description,QString type) : uuid(QUuid::createUuid().toString().remove("{").remove("}")), name(name), description(description), type(type) {
+AbstractSensor::AbstractSensor(QString name, QString description,double minValue, double maxValue) : uuid(QUuid::createUuid().toString().remove("{").remove("}")), name(name), description(description), minValue(minValue), maxValue(maxValue) {
 };
 
-AbstractSensor::AbstractSensor(QString name, QString description,QString type,double minValue, double maxValue) : uuid(QUuid::createUuid().toString().remove("{").remove("}")), name(name), description(description), type(type), minValue(minValue), maxValue(maxValue) {
-};
-
-AbstractSensor::AbstractSensor(QString id,QString name, QString description,QString type,double minValue, double maxValue) : uuid(id), name(name), description(description), type(type), minValue(minValue), maxValue(maxValue) {
+AbstractSensor::AbstractSensor(QString uuid,QString name, QString description,double minValue, double maxValue) : uuid(uuid), name(name), description(description), minValue(minValue), maxValue(maxValue) {
 };
 
 QString AbstractSensor::getUUID() const {
@@ -43,13 +37,6 @@ void AbstractSensor::setDescription(const QString& description) {
     this->description = description;
 };
 
-QString AbstractSensor::getType() const {
-    return type;
-};
-
-void AbstractSensor::setType(const QString& type) {
-    this->type = type;
-};
 
 double AbstractSensor::getMinValue() const {
     return minValue;

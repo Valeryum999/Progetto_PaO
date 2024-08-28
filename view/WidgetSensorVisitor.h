@@ -1,7 +1,7 @@
 #ifndef VIEW_SENSOR_VISITOR_H
 #define VIEW_SENSOR_VISITOR_H
 
-#include "view/Visitor.h"
+#include "model/Visitor.h"
 #include <QWidget>
 #include "model/HumiditySensor.h"
 #include "model/TemperatureSensor.h"

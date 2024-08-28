@@ -1,17 +1,16 @@
 #include "model/RadiationSensor.h"
-#include "view/Visitor.h"
 #include <stdlib.h>
 #include <iostream>
 
-RadiationSensor::RadiationSensor(QString name, QString description, QString type,double minValue, double maxValue,QString unityOfMeasure): AbstractSensor(name,description,type,minValue,maxValue), unityOfMeasure(unityOfMeasure){
+RadiationSensor::RadiationSensor(QString name, QString description, double minValue, double maxValue,QString unityOfMeasure): AbstractSensor(name,description,minValue,maxValue), unityOfMeasure(unityOfMeasure){
 
 };
 
-RadiationSensor::RadiationSensor(QString id,QString name, QString description, QString type,double minValue, double maxValue,QString unityOfMeasure): AbstractSensor(id,name,description,type,minValue,maxValue), unityOfMeasure(unityOfMeasure){
+RadiationSensor::RadiationSensor(QString id,QString name, QString description, double minValue, double maxValue,QString unityOfMeasure): AbstractSensor(id,name,description,minValue,maxValue), unityOfMeasure(unityOfMeasure){
 
 };
 
-RadiationSensor::RadiationSensor(const RadiationSensor& sensor): AbstractSensor(sensor.getUUID(),sensor.getName(),sensor.getDescription(),sensor.getType(),sensor.getMinValue(),sensor.getMaxValue()),unityOfMeasure(sensor.getUnityOfMeasure()){
+RadiationSensor::RadiationSensor(const RadiationSensor& sensor): AbstractSensor(sensor.getUUID(),sensor.getName(),sensor.getDescription(),sensor.getMinValue(),sensor.getMaxValue()),unityOfMeasure(sensor.getUnityOfMeasure()){
 
 };
 
@@ -41,7 +40,7 @@ QJsonObject RadiationSensor::RadiationSensor::toJson() const{
     json["uuid"] = this->getUUID();
     json["name"] = this->getName();
     json["description"] = this->getDescription();
-    json["type"] = this->getType();
+    json["type"] = QString::fromStdString("Radiation");
     json["unity_of_measure"] = unityOfMeasure;
     json["min_value"] = this->getMinValue();
     json["max_value"] = this->getMaxValue();

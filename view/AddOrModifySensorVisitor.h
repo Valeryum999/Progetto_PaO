@@ -1,7 +1,7 @@
 #ifndef VIEW_ADD_OR_MODIFY_SENSOR_VISITOR_H
 #define VIEW_ADD_OR_MODIFY_SENSOR_VISITOR_H
 
-#include "view/Visitor.h"
+#include "model/Visitor.h"
 #include "view/AddOrModifySensor.h"
 
 class AddOrModifySensorVisitor : public Visitor{

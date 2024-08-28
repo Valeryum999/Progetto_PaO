@@ -13,7 +13,7 @@ void AddOrModifySensorVisitor::visit(TemperatureSensor& sensor){
     addOrModifySensor->setDescription(sensor.getDescription());
     addOrModifySensor->setMinValue(sensor.getMinValue());
     addOrModifySensor->setMaxValue(sensor.getMaxValue());
-    addOrModifySensor->setType(sensor.getType());
+    addOrModifySensor->setType(QString::fromStdString("Temperature"));
 };
 
 void AddOrModifySensorVisitor::visit(HumiditySensor& sensor){
@@ -21,7 +21,7 @@ void AddOrModifySensorVisitor::visit(HumiditySensor& sensor){
     addOrModifySensor->setDescription(sensor.getDescription());
     addOrModifySensor->setMinValue(sensor.getMinValue());
     addOrModifySensor->setMaxValue(sensor.getMaxValue());
-    addOrModifySensor->setType(sensor.getType());
+    addOrModifySensor->setType(QString::fromStdString("Humidity"));
 };
 
 void AddOrModifySensorVisitor::visit(PressureSensor& sensor){
@@ -29,7 +29,7 @@ void AddOrModifySensorVisitor::visit(PressureSensor& sensor){
     addOrModifySensor->setDescription(sensor.getDescription());
     addOrModifySensor->setMinValue(sensor.getMinValue());
     addOrModifySensor->setMaxValue(sensor.getMaxValue());
-    addOrModifySensor->setType(sensor.getType());
+    addOrModifySensor->setType(QString::fromStdString("Pressure"));
 };
 
 void AddOrModifySensorVisitor::visit(RadiationSensor& sensor){
@@ -37,5 +37,5 @@ void AddOrModifySensorVisitor::visit(RadiationSensor& sensor){
     addOrModifySensor->setDescription(sensor.getDescription());
     addOrModifySensor->setMinValue(sensor.getMinValue());
     addOrModifySensor->setMaxValue(sensor.getMaxValue());
-    addOrModifySensor->setType(sensor.getType());
+    addOrModifySensor->setType(QString::fromStdString("Radiation"));
 };

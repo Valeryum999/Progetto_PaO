@@ -43,7 +43,6 @@ class WidgetSensor : public QWidget{
         WidgetSensor(const WidgetSensor& sensorWidget, QWidget* parent=nullptr);
         AbstractSensor* getAbstractSensor() const;
         QString getId() const;
-        QString getType() const;
         void setType(const QString& id);
         QString getName() const;
         void setName(const QString& name);

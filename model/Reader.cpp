@@ -21,10 +21,8 @@ HumiditySensor* Reader::readHumiditySensor(const QJsonObject& object) const {
         object["uuid"].toString(),
         object["name"].toString(),
         object["description"].toString(),
-        object["type"].toString(),
         object["min_value"].toDouble(),
-        object["max_value"].toDouble(),
-        object["percentage"].toInt()
+        object["max_value"].toDouble()
     );
 };
 
@@ -33,7 +31,6 @@ TemperatureSensor* Reader::readTemperatureSensor(const QJsonObject& object) cons
         object["uuid"].toString(),
         object["name"].toString(),
         object["description"].toString(),
-        object["type"].toString(),
         object["min_value"].toDouble(),
         object["max_value"].toDouble(),
         object["unity_of_measure"].toString()
@@ -45,7 +42,6 @@ PressureSensor* Reader::readPressureSensor(const QJsonObject& object) const {
         object["uuid"].toString(),
         object["name"].toString(),
         object["description"].toString(),
-        object["type"].toString(),
         object["min_value"].toDouble(),
         object["max_value"].toDouble(),
         object["unity_of_measure"].toString()
@@ -57,7 +53,6 @@ RadiationSensor* Reader::readRadiationSensor(const QJsonObject& object) const {
         object["uuid"].toString(),
         object["name"].toString(),
         object["description"].toString(),
-        object["type"].toString(),
         object["min_value"].toDouble(),
         object["max_value"].toDouble(),
         object["unity_of_measure"].toString()

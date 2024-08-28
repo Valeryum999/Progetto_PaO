@@ -1,24 +1,15 @@
 #include "model/HumiditySensor.h"
-#include "view/Visitor.h"
 
-HumiditySensor::HumiditySensor(QString name, QString description, QString type, double minValue, double maxValue,int percentage) : AbstractSensor(name,description,type,minValue,maxValue),percentage(percentage){
+HumiditySensor::HumiditySensor(QString name, QString description, double minValue, double maxValue) : AbstractSensor(name,description,minValue,maxValue){
     
 };
 
-HumiditySensor::HumiditySensor(QString id, QString name, QString description, QString type, double minValue, double maxValue,int percentage) : AbstractSensor(id,name,description,type,minValue,maxValue),percentage(percentage){
+HumiditySensor::HumiditySensor(QString id, QString name, QString description, double minValue, double maxValue) : AbstractSensor(id,name,description,minValue,maxValue){
     
 };
 
-HumiditySensor::HumiditySensor(const HumiditySensor& sensor): AbstractSensor(sensor.getUUID(),sensor.getName(),sensor.getDescription(),sensor.getType(),sensor.getMinValue(),sensor.getMaxValue()),percentage(sensor.getPercentage()){
+HumiditySensor::HumiditySensor(const HumiditySensor& sensor): AbstractSensor(sensor.getUUID(),sensor.getName(),sensor.getDescription(),sensor.getMinValue(),sensor.getMaxValue()){
 
-};
-
-int HumiditySensor::getPercentage() const{
-    return percentage;
-};
-
-void HumiditySensor::setPercentage(int percentage) {
-    this->percentage = percentage;
 };
 
 std::vector<double> HumiditySensor::generateData(){
@@ -40,10 +31,9 @@ QJsonObject HumiditySensor::toJson() const {
     json["uuid"] = this->getUUID();
     json["name"] = this->getName();
     json["description"] = this->getDescription();
-    json["type"] = this->getType();
+    json["type"] = QString::fromStdString("Humidity");
     json["min_value"] = this->getMinValue();
     json["max_value"] = this->getMaxValue();
-    json["percentage"] = percentage;
     return json;
 };
 

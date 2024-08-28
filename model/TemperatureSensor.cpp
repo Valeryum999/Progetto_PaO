@@ -1,17 +1,16 @@
 #include "model/TemperatureSensor.h"
-#include "view/Visitor.h"
 #include <stdlib.h>
 #include <iostream>
 
-TemperatureSensor::TemperatureSensor(QString name, QString description, QString type,double minValue, double maxValue,QString unityOfMeasure): AbstractSensor(name,description,type,minValue,maxValue), unityOfMeasure(unityOfMeasure){
+TemperatureSensor::TemperatureSensor(QString name, QString description, double minValue, double maxValue,QString unityOfMeasure): AbstractSensor(name,description,minValue,maxValue), unityOfMeasure(unityOfMeasure){
 
 };
 
-TemperatureSensor::TemperatureSensor(QString id,QString name, QString description, QString type,double minValue, double maxValue,QString unityOfMeasure): AbstractSensor(id,name,description,type,minValue,maxValue), unityOfMeasure(unityOfMeasure){
+TemperatureSensor::TemperatureSensor(QString id,QString name, QString description,double minValue, double maxValue,QString unityOfMeasure): AbstractSensor(id,name,description,minValue,maxValue), unityOfMeasure(unityOfMeasure){
 
 };
 
-TemperatureSensor::TemperatureSensor(const TemperatureSensor& sensor): AbstractSensor(sensor.getUUID(),sensor.getName(),sensor.getDescription(),sensor.getType(),sensor.getMinValue(),sensor.getMaxValue()),unityOfMeasure(sensor.getUnityOfMeasure()){
+TemperatureSensor::TemperatureSensor(const TemperatureSensor& sensor): AbstractSensor(sensor.getUUID(),sensor.getName(),sensor.getDescription(),sensor.getMinValue(),sensor.getMaxValue()),unityOfMeasure(sensor.getUnityOfMeasure()){
 
 };
 
@@ -41,7 +40,7 @@ QJsonObject TemperatureSensor::TemperatureSensor::toJson() const{
     json["uuid"] = this->getUUID();
     json["name"] = this->getName();
     json["description"] = this->getDescription();
-    json["type"] = this->getType();
+    json["type"] = QString::fromStdString("Temperature");
     json["unity_of_measure"] = unityOfMeasure;
     json["min_value"] = this->getMinValue();
     json["max_value"] = this->getMaxValue();

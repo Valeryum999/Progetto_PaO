@@ -1,3 +1,4 @@
 moc_*
 *.o
 *.json
+.qmake.stash

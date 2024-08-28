@@ -1,7 +1,7 @@
 #ifndef VIEW_CHART_SENSOR_VISITOR_H
 #define VIEW_CHART_SENSOR_VISITOR_H
 
-#include "view/Visitor.h"
+#include "model/Visitor.h"
 #include "view/MainContentSensor.h"
 
 class ChartSensorVisitor : public Visitor{

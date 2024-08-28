@@ -253,10 +253,10 @@ void AddOrModifySensor::handleSelectedTypeOfSensor(int index){
 };
 
 void AddOrModifySensor::handleCreatedSensor(){
-    if(name->text().isEmpty()){
+    if(name->text().isEmpty() || description->text().isEmpty()){
         QMessageBox::warning(this,
                     "Alert",
-                    "You can't create a sensor without a name.",
+                    "You can't create a sensor without a name or a description.",
                     QMessageBox::Ok);
         return;
     }
@@ -301,10 +301,10 @@ void AddOrModifySensor::handleCreatedSensor(){
 };
 
 void AddOrModifySensor::handleModifiedSensor(){
-    if(name->text().isEmpty()){
+    if(name->text().isEmpty() || description->text().isEmpty()){
         QMessageBox::warning(this,
                     "Alert",
-                    "You can't create a sensor without a name.",
+                    "You can't create a sensor without a name or a description.",
                     QMessageBox::Ok);
         return;
     }
@@ -320,7 +320,6 @@ void AddOrModifySensor::handleModifiedSensor(){
         sensor = new TemperatureSensor(sensor->getUUID(),
                                        name->text(),
                                        description->text(),
-                                       type->currentText(),
                                        minValue->value(),
                                        maxValue->value(),
                                        unityOfMeasure->currentText());
@@ -328,14 +327,12 @@ void AddOrModifySensor::handleModifiedSensor(){
         sensor = new HumiditySensor(sensor->getUUID(),
                                     name->text(),
                                     description->text(),
-                                    type->currentText(),
                                     minValue->value(),
                                     maxValue->value());
     } else if(type->currentText().compare("Pressure") == 0){
         sensor = new PressureSensor(sensor->getUUID(),
                                        name->text(),
                                        description->text(),
-                                       type->currentText(),
                                        minValue->value(),
                                        maxValue->value(),
                                        unityOfMeasure->currentText());
@@ -343,7 +340,6 @@ void AddOrModifySensor::handleModifiedSensor(){
         sensor = new RadiationSensor(sensor->getUUID(),
                                        name->text(),
                                        description->text(),
-                                       type->currentText(),
                                        minValue->value(),
                                        maxValue->value(),
                                        unityOfMeasure->currentText());

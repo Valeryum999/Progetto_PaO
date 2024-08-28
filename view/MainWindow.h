@@ -24,7 +24,6 @@ class MainWindow: public QMainWindow {
     JSONFile *currentFile;
 
   public slots:
-    void newFile();
     void openFile();
     void save();
     void save_as();

@@ -3,3 +3,6 @@ moc_*
 *.json
 !test.json
 .qmake.stash
+Makefile
+*.pro
+hello-world

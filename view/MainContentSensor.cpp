@@ -13,6 +13,7 @@ MainContentSensor::MainContentSensor(QWidget *parent): QWidget(parent),chart(new
     mainLayout = new QVBoxLayout(this);
     dataLayout = new QVBoxLayout();
     id = new QLabel();
+    id->setTextInteractionFlags(Qt::TextSelectableByMouse);
     name = new QLabel();
     name->setStyleSheet("font-size: 35px;");
     description = new QLabel();
@@ -70,6 +71,7 @@ MainContentSensor::MainContentSensor(AbstractSensor* sensor,QWidget *parent): QW
     mainLayout = new QVBoxLayout(this);
     dataLayout = new QVBoxLayout();
     id = new QLabel();
+    id->setTextInteractionFlags(Qt::TextSelectableByMouse);
     name = new QLabel();
     name->setStyleSheet("font-size: 35px;");
     description = new QLabel();

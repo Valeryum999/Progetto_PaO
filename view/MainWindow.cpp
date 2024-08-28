@@ -34,11 +34,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent) {
 
     // Actions
-    QAction* create = new QAction(
-        QIcon(QPixmap(("assets/icons/new.svg"))),
-        "New"
-    );
-    create->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_N));
     QAction* open = new QAction(
         QIcon(QPixmap(("assets/icons/open.svg"))),
         "Open"
@@ -65,7 +60,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Sets menu bar
     QMenu* file = menuBar()->addMenu("&File");
-    file->addAction(create);
     file->addAction(open);
     file->addAction(save);
     file->addAction(save_as);
@@ -122,7 +116,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Connects actions SEND SIGNALS TO SLOTS PERCHE COSI FANNO ROBA
 
-    connect(create, &QAction::triggered,this,&MainWindow::newFile);
     connect(open, &QAction::triggered, this, &MainWindow::openFile);
     connect(save, &QAction::triggered, this, &MainWindow::save);
     connect(save_as,&QAction::triggered,this,&MainWindow::save_as);
@@ -143,19 +136,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(this, &MainWindow::sensorSelected,sensorMainContent,&MainContentSensor::selectedSensorWidgetHandler);
     
-};
-
-void MainWindow::newFile(){
-    QString path = QFileDialog::getOpenFileName(
-        this,
-        "Creates new file",
-        "./",
-        "JSON files *.json"
-    );
-    if (path.isEmpty()) {
-        return;
-    }
-    currentFile->setPath(path.toStdString());
 };
 
 void MainWindow::openFile(){

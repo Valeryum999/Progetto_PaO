@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     // Defines an application object
     QApplication app(argc, argv);
 
-    QIcon icon(QString::fromStdString("icon.png"));
+    QIcon icon(QString::fromStdString("assets/icons/icon.png"));
 
     MainWindow *window = new MainWindow();
 
